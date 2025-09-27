@@ -46,7 +46,7 @@ def build_options(plugin_dir: str) -> webdriver.ChromeOptions:
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--disable-features=DisableLoadExtensionCommandLineSwitch")
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    
     
 
     if Conf.proxy:
@@ -65,6 +65,7 @@ def main() -> None:
 
     # Launch Chrome
     options = build_options(plugin_dir)
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     # Check current IP 
@@ -72,12 +73,15 @@ def main() -> None:
     ip = driver.find_element(By.TAG_NAME, "body").text
     print(f"🛡 Current IP: {ip}")
 
-    # Open target site
-    driver.get("https://nekto.me/audiochat#/")
-    time.sleep(5)
+    try:
+        driver.get("https://api.ipify.org/?format=text")
+        ip = driver.find_element(By.TAG_NAME, "body").text
+        print(f"🛡 Current IP: {ip}")
 
-    # option
-    # driver.quit()
+        driver.get(Conf.URL)
+        input("Selenium is running. Press Enter to quit and close driver...\n")
+    finally:
+        driver.quit()
 
 
 if __name__ == "__main__":
