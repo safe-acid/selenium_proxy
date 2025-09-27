@@ -6,7 +6,7 @@ Selenium + Proxy Auth (Chrome Extension, MV3)
 ✅ Automatic proxy login (Basic/Proxy Auth).
 
 ## Install Requirements
-Install python requirements from requirements.txt run script
+Install python requirements from requirements.txt, adjust conf.py, run main.py
 ```shell script
 pip install -r requirements.txt
 python3 main.py
