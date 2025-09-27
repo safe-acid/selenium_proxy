@@ -46,6 +46,8 @@ def build_options(plugin_dir: str) -> webdriver.ChromeOptions:
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--disable-features=DisableLoadExtensionCommandLineSwitch")
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    
 
     if Conf.proxy:
         options.add_argument(f"--proxy-server=http://{Conf.proxyIP}:{Conf.proxyPort}")
