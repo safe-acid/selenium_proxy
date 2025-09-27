@@ -1,4 +1,4 @@
-# selenium_proxy
+# Selenium with proxy template
 Selenium + Proxy Auth (Chrome Extension, MV3)
 
 
